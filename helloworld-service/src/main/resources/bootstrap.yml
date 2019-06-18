@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: helloworld-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+
+eureka:
+  instance:
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+
+server:
+  port: ${PORT:8200}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
