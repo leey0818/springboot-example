@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api-gateway
+
+zuul:
+  ignored-services: '*'
+  routes:
+    helloworld:
+      path: /api/helloworld/**
+      service-id: helloworld-service
+      strip-prefix: true
+
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 10
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+
+server:
+  port: ${PORT:8100}
